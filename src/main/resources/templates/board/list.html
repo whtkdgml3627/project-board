@@ -9,9 +9,45 @@
 </head>
 <body>
   
-  <div layout:fragment="content">
-    <h1>List</h1>
+  <div class="container-fluid pt-4 px-4" layout:fragment="content">
+    [[${boardList}]]
+    <div class="col-sm-12 col-xl-12">
+      <div class="bg-light rounded h-100 p-4">
+        <h6 class="mb-4">게시판 목록</h6>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">제목</th>
+              <th scope="col">작성자</th>
+              <th scope="col">날짜</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="list, stat : ${boardList.list}">
+              <td>[[${stat.count}]]</td>
+              <td>[[${list.title}]]</td>
+              <td>[[${list.writer}]]</td>
+              <td>[[${list.dueDate}]]</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="btn-toolbar" role="toolbar" style="justify-content: center;">
+          <div class="btn-group me-2" role="group" aria-label="First group">
+            <button type="button" class="btn btn-primary"><</button>
+            <button type="button" class="btn btn-primary">1</button>
+            <button type="button" class="btn btn-primary">2</button>
+            <button type="button" class="btn btn-primary">></button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <script layout:fragment="script" th:inline="javascript">
+    const {page, size} = [[${pageRequestDTO}]];
+    const {total} = [[${boardList}]];
+  </script>
   
 </body>
 </html>
