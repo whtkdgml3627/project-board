@@ -280,6 +280,9 @@
     display:flex;
     justify-content:flex-end;
 }
+.button_wrap .btn {
+    margin-left:10px;
+}
 
 .btn.btn-primary.active {
     background-color: #26abff;

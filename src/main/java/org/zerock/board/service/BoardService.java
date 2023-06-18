@@ -23,4 +23,7 @@ public interface BoardService {
   //게시판 상세
   BoardDTO boardDetail(long bno);
 
+  //게시판 삭제
+  int boardRemove(long bno);
+
 }

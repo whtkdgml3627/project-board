@@ -47,5 +47,11 @@ public class BoardServiceImpl implements BoardService {
     //리턴에 바로 값 넘겨주기
     return boardMapper.boardDetail(bno);
   }
+
+  @Override
+  public int boardRemove(long bno) {
+    //리턴에 바로 값 넘겨주기
+    return boardMapper.boardRemove(bno);
+  }
   
 }

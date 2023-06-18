@@ -7,9 +7,9 @@
 
   <!-- 게시판 목록 -->
   <select id="boardList" resultType="org.zerock.board.dto.BoardDTO">
-    select bno, title, content, writer, dueDate
+    select bno, title, content, writer, dueDate, remove
     from tbl_board
-    where bno > 0
+    where bno > 0 and remove = 1
     order by bno desc
     limit #{pr.skip}, #{pr.size}
   </select>
@@ -32,9 +32,22 @@
 
   <!-- 게시판 상세 -->
   <select id="boardDetail" resultType="org.zerock.board.dto.BoardDTO">
-  select title, content, writer, updateDate
-  from tbl_board
-  where bno = #{bno}
+    select bno, title, content, writer, updateDate, remove
+    from tbl_board
+    where bno = #{bno}
   </select>
+
+  <!-- 게시판 삭제 -->
+  <update id="boardRemove">
+    update tbl_board
+    set
+      title = '',
+      content = '',
+      writer = '',
+      dueDate = null,
+      updateDate = now(),
+      remove = false
+    where bno = #{bno}
+  </update>
 
 </mapper>

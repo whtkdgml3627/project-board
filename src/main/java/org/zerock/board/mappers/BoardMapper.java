@@ -16,7 +16,6 @@ public interface BoardMapper {
 
   //total 가져오기
   long listCount(PageRequestDTO pageRequestDTO);
-
   // /게시판 목록
 
   //게시판 등록
@@ -25,5 +24,7 @@ public interface BoardMapper {
   //게시판 상세
   BoardDTO boardDetail(long bno);
 
+  //게시판 삭제
+  int boardRemove(long bno);
 
 }

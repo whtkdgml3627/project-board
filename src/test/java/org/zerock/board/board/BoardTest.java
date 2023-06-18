@@ -56,5 +56,13 @@ public class BoardTest {
     log.info("====================================");
     log.info(boardMapper.boardDetail(720811L));
   }
+
+  //게시판 삭제 테스트
+  @Test
+  public void boardRemoveTest() {
+    log.info("====================================");
+    log.info("====================================");
+    log.info(boardMapper.boardRemove(720884L));
+  }
   
 }

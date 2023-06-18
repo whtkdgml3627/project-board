@@ -57,15 +57,28 @@ public class BoardController {
   //게시판 상세
   @GetMapping("detail/{bno}")
   public String boardDetail(
-    @PathVariable("bno") long bno, Model model
+    @PathVariable("bno") long bno, PageRequestDTO pageRequestDTO, Model model
   ) {
     log.info("get | detail.........................");
     //bno찾기
     BoardDTO dto = boardService.boardDetail(bno);
+    //삭제된 게시물이면 return
+    // if(dto.getRemove() == 0){
+    //   return "redirect:/board/list";
+    // }
     //model로 전달
     model.addAttribute("boardDetail", dto);
 
     return "/board/detail";
+  }
+
+  //게시판 삭제(update)
+  @PostMapping("remove/{bno}")
+  public String boardRemove(
+    @PathVariable("bno") long bno
+  ) {
+    boardService.boardRemove(bno);
+    return "redirect:/board/list";
   }
   
 }

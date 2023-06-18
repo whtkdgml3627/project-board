@@ -18,5 +18,6 @@ public class BoardDTO {
   private String writer;      //작성자
   private String dueDate;     //등록일자
   private String updateDate;  //수정일자
+  private int remove;     //삭제여부
   
 }

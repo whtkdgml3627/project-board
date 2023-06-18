@@ -23,10 +23,50 @@
         <h4 class="mb-4">등록일</h4>
         <div class="alert alert-light" role="alert">[[${boardDetail.updateDate}]]</div>
         <div class="button_wrap">
-          <button type="button" class="btn btn-primary btnModify">수정</button>
+          <a th:href="@{/board/list(page = ${pageRequestDTO.page}, size = ${pageRequestDTO.size})}" class="btn btn-primary btnList">목록</a>
+          <button type="button" class="btn btn-info text-white btnModify">수정</button>
+          <button type="button" class="btn btn-danger btnRemove">삭제</button>
+        </div>
+      </div>
+      <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body">정말 삭제 하시겠습니까?</div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger btnRemoveModal" data-bs-dismiss="modal">확인</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <form method="post" class="actionForm">
+
+    </form>
   </div>
+  <script layout:fragment="script" th:inline="javascript">
+    //변수, 선택자
+    const {bno, remove} = [[${boardDetail}]];
+    const modalView = new bootstrap.Modal(document.querySelector(".modal"));
+    const actionForm = document.querySelector(".actionForm");
+    const bntRemove = document.querySelector(".btnRemove");
+    const bntRemoveModal = document.querySelector(".btnRemoveModal");
+    //console.log(window.location.host + "/board/list");
+
+    //삭제된 게시물은 list로 return처리
+    if(remove == 0){
+      alert("삭제된 게시물 입니다.");
+      window.location.href = "http://" + window.location.host + "/board/list";
+    }
+
+    //게시물 삭제 버튼
+    bntRemove.addEventListener("click", e => {
+      modalView.show();
+    });
+    bntRemoveModal.addEventListener("click", e => {
+      actionForm.setAttribute("action",`/board/remove/${bno}`);
+      actionForm.submit();
+    });
+  </script>
 </body>
 </html>

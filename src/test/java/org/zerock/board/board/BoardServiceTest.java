@@ -46,10 +46,17 @@ public class BoardServiceTest {
   //게시판 상세 서비스
   @Test
   public void boardDetailServiceTest() {
-
     log.info("====================================");
     log.info("====================================");
     log.info(boardService.boardDetail(720881L));
+  }
+
+  //게시판 삭제 테스트
+  @Test
+  public void boardRemoveServiceTest() {
+    log.info("====================================");
+    log.info("====================================");
+    log.info(boardService.boardRemove(720883L));
   }
   
 }

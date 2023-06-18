@@ -8,8 +8,12 @@ create table tbl_board (
 )
 ;
 
+##삭제컬럼추가
+alter table tbl_board add `remove` boolean default true after `updateDate`
+;
+
 ##조회
-select * from tbl_board where bno > 0 order by bno desc
+select * from tbl_board where bno > 0 order by bno desc limit 10
 ;
 
 select count(*) from tbl_board
@@ -53,6 +57,24 @@ limit 101) board
 insert into tbl_board
 (title, content, writer, dueDate)
 values ('등록테스트', '등록테스트 상세 내용', '등록테스트 작성자', now())
+;
+
+##게시판 상세
+select title, content, writer, updateDate
+from tbl_board
+where bno = 720811
+;
+
+##게시판 삭제
+update tbl_board
+set
+	title = '',
+	content = '',
+	writer = '',
+	deuDate = null,
+	updateDate = now(),
+	remove = false
+where bno = 720885
 ;
 
 
