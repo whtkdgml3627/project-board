@@ -42,5 +42,14 @@ public class BoardServiceTest {
     log.info("====================================");
     boardService.boardAdd(boardDTO);
   }
+
+  //게시판 상세 서비스
+  @Test
+  public void boardDetailServiceTest() {
+
+    log.info("====================================");
+    log.info("====================================");
+    log.info(boardService.boardDetail(720881L));
+  }
   
 }

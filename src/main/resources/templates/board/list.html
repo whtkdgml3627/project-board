@@ -13,7 +13,7 @@
     <!--/* [[${boardList}]] */-->
     <div class="col-sm-12 col-xl-12">
       <div class="bg-light rounded h-100 p-4">
-        <h6 class="mb-4">게시판 목록</h6>
+        <h2 class="mb-4">게시판 목록</h2>
         <table class="table table-hover">
           <thead>
             <tr>
@@ -23,8 +23,8 @@
               <th scope="col">날짜</th>
             </tr>
           </thead>
-          <tbody>
-            <tr th:each="list, stat : ${boardList.list}">
+          <tbody class="boardDetail">
+            <tr th:each="list : ${boardList.list}" th:data-bno="${list.bno}">
               <td>[[${list.bno}]]</td>
               <td>[[${list.title}]]</td>
               <td>[[${list.writer}]]</td>
@@ -53,6 +53,7 @@
     const actionForm = document.querySelector(".actionForm");
     const paging = document.querySelector(".paging");
     const pageObj = document.querySelector("input[name=page]");
+    const boardDetail = document.querySelector(".boardDetail");
     //page,size 값 변수에 저장
     const {page, size} = [[${pageRequestDTO}]];
     //total(101) 값 저장
@@ -84,11 +85,22 @@
 
     }, false);
 
+    //게시판 상세 이동
+    boardDetail.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
 
+      //target 찾기
+      const target = e.target;
 
-    
-    
+      //bno 가져오기
+      const bno = target.closest("tr").getAttribute("data-bno");
+      console.log(bno);
 
+      //쿼리스트링 그대로 detail페이지로
+      actionForm.setAttribute("action", `/board/detail/${bno}`);
+      actionForm.submit();
+    }, false);
   </script>
   
 </body>

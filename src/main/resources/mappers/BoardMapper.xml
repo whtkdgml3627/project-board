@@ -30,4 +30,11 @@
     values (#{title}, #{content}, #{writer}, now())
   </insert>
 
+  <!-- 게시판 상세 -->
+  <select id="boardDetail" resultType="org.zerock.board.dto.BoardDTO">
+  select title, content, writer, updateDate
+  from tbl_board
+  where bno = #{bno}
+  </select>
+
 </mapper>

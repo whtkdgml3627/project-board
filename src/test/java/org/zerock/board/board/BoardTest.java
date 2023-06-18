@@ -47,5 +47,14 @@ public class BoardTest {
     log.info("====================================");
     boardMapper.boardAdd(boardDTO);
   }
+
+  //게시판 상세 테스트
+  @Test
+  public void boardDetailTest() {
+
+    log.info("====================================");
+    log.info("====================================");
+    log.info(boardMapper.boardDetail(720811L));
+  }
   
 }

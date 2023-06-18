@@ -20,4 +20,7 @@ public interface BoardService {
   //게시판 등록
   int boardAdd(BoardDTO boardDTO);
 
+  //게시판 상세
+  BoardDTO boardDetail(long bno);
+
 }

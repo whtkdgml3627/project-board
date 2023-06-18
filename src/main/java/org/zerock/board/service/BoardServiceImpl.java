@@ -41,5 +41,11 @@ public class BoardServiceImpl implements BoardService {
     //리턴에 바로 값 넘겨주기
     return boardMapper.boardAdd(boardDTO);
   }
+
+  @Override
+  public BoardDTO boardDetail(long bno) {
+    //리턴에 바로 값 넘겨주기
+    return boardMapper.boardDetail(bno);
+  }
   
 }
