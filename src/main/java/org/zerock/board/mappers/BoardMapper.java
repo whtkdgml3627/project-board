@@ -19,4 +19,7 @@ public interface BoardMapper {
 
   // /게시판 목록
 
+  //게시판 등록
+  int boardAdd(BoardDTO boardDTO);
+
 }

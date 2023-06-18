@@ -38,7 +38,7 @@ public class PageRequestDTO {
     if(page < 0){
       this.page = 1;
     }else {
-      page = this.page;
+      this.page = page;
     }
   }
 
@@ -47,7 +47,7 @@ public class PageRequestDTO {
     if(size < 0 || size > 100) {
       size = 10;
     }else {
-      size = this.size;
+      this.size = size;
     }
   }
 

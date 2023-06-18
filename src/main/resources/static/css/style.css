@@ -280,3 +280,8 @@
     display:flex;
     justify-content:flex-end;
 }
+
+.btn.btn-primary.active {
+    background-color: #26abff;
+    border-color: #1aa6ff
+}

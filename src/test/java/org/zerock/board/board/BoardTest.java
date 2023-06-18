@@ -6,6 +6,7 @@ package org.zerock.board.board;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.zerock.board.dto.BoardDTO;
 import org.zerock.board.dto.PageRequestDTO;
 import org.zerock.board.mappers.BoardMapper;
 
@@ -20,7 +21,7 @@ public class BoardTest {
 
   //게시판 목록 테스트
   @Test
-  public void boardListTest(){
+  public void boardListTest() {
     PageRequestDTO list = PageRequestDTO.builder().build(); // 0, 10 설정
 
     log.info("====================================");
@@ -31,6 +32,20 @@ public class BoardTest {
 
     //total 가져오기
     boardMapper.listCount(list);
+  }
+
+  //게시판 등록 테스트
+  @Test
+  public void boardAddTest() {
+    BoardDTO boardDTO = BoardDTO.builder()
+    .title("게시판 등록 DAO테스트")
+    .content("게시판 등록 상세 DAO테스트")
+    .writer("게시판 등록 작성자 DAO테스트")
+    .build();
+
+    log.info("====================================");
+    log.info("====================================");
+    boardMapper.boardAdd(boardDTO);
   }
   
 }

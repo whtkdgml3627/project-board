@@ -34,5 +34,12 @@ public class BoardServiceImpl implements BoardService {
     return PageResponseDTO.<BoardDTO>withAll()
       .list(boardList).total(total).build();
   }
+
+  //게시판 등록
+  @Override
+  public int boardAdd(BoardDTO boardDTO) {
+    //리턴에 바로 값 넘겨주기
+    return boardMapper.boardAdd(boardDTO);
+  }
   
 }

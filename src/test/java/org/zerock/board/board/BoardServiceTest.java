@@ -6,6 +6,7 @@ package org.zerock.board.board;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.zerock.board.dto.BoardDTO;
 import org.zerock.board.dto.PageRequestDTO;
 import org.zerock.board.service.BoardService;
 
@@ -20,12 +21,26 @@ public class BoardServiceTest {
 
   //게시판 목록 서비스
   @Test
-  public void boardList(){
+  public void boardListServiceTest() {
     PageRequestDTO prList = PageRequestDTO.builder().build();
 
     log.info("====================================");
     log.info("====================================");
     log.info(boardService.boardList(prList));
+  }
+
+  //게시판 등록 서비스
+  @Test
+  public void boardAddServiceTest() {
+    BoardDTO boardDTO = BoardDTO.builder()
+    .title("등록 서비스 테스트")
+    .content("등록 상세 서비스 테스트")
+    .writer("등록 작성자 서비스 테스트")
+    .build();
+
+    log.info("====================================");
+    log.info("====================================");
+    boardService.boardAdd(boardDTO);
   }
   
 }

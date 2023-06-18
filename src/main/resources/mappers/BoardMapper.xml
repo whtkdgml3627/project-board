@@ -7,7 +7,7 @@
 
   <!-- 게시판 목록 -->
   <select id="boardList" resultType="org.zerock.board.dto.BoardDTO">
-    select title, content, writer, dueDate
+    select bno, title, content, writer, dueDate
     from tbl_board
     where bno > 0
     order by bno desc
@@ -22,5 +22,12 @@
     where bno > 0
     limit #{countEnd}) board
   </select>
+
+  <!-- 게시판 등록 -->
+  <insert id="boardAdd">
+    insert into tbl_board
+    (title, content, writer, dueDate)
+    values (#{title}, #{content}, #{writer}, now())
+  </insert>
 
 </mapper>

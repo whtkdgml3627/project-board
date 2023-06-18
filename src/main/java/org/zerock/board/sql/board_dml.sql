@@ -49,6 +49,12 @@ where bno > 0
 limit 101) board
 ;
 
+##게시판 등록
+insert into tbl_board
+(title, content, writer, dueDate)
+values ('등록테스트', '등록테스트 상세 내용', '등록테스트 작성자', now())
+;
+
 
 
 

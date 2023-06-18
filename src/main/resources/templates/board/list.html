@@ -10,7 +10,7 @@
 <body>
   
   <div class="container-fluid pt-4 px-4" layout:fragment="content">
-    [[${boardList}]]
+    <!--/* [[${boardList}]] */-->
     <div class="col-sm-12 col-xl-12">
       <div class="bg-light rounded h-100 p-4">
         <h6 class="mb-4">게시판 목록</h6>
@@ -25,7 +25,7 @@
           </thead>
           <tbody>
             <tr th:each="list, stat : ${boardList.list}">
-              <td>[[${stat.count}]]</td>
+              <td>[[${list.bno}]]</td>
               <td>[[${list.title}]]</td>
               <td>[[${list.writer}]]</td>
               <td>[[${list.dueDate}]]</td>
@@ -33,25 +33,62 @@
           </tbody>
         </table>
         <div class="btn-toolbar" role="toolbar" style="justify-content: center;">
-          <div class="btn-group me-2 paging" role="group" aria-label="First group">
-            <button type="button" class="btn btn-primary"><</button>
-            <button type="button" class="btn btn-primary">1</button>
-            <button type="button" class="btn btn-primary">2</button>
-            <button type="button" class="btn btn-primary">></button>
-          </div>
+          <!--/* paging */-->
+          <div class="btn-group me-2 paging" role="group" aria-label="First group"></div>
+        </div>
+        <div class="button_wrap">
+          <a href="/board/add" class="btn btn-primary">등록</a>
         </div>
       </div>
     </div>
     <form action="/board/list" method="get" class="actionForm">
-      <input type="hidden" name="page" th:value="">
+      <input type="hidden" name="page" th:value="${pageRequestDTO.page}">
+      <input type="hidden" name="size" th:value="${pageRequestDTO.size}">
     </form>
+    <script src="/js/paging.js"></script>
   </div>
 
   <script layout:fragment="script" th:inline="javascript">
-    cont actionForm = document.querySelector("actionForm");
+    //클래스로 선택
+    const actionForm = document.querySelector(".actionForm");
     const paging = document.querySelector(".paging");
+    const pageObj = document.querySelector("input[name=page]");
+    //page,size 값 변수에 저장
     const {page, size} = [[${pageRequestDTO}]];
+    //total(101) 값 저장
     const {total} = [[${boardList}]];
+    
+    //paging동적으로 생성
+    const pageList = makePages(page, size, total);
+    paging.innerHTML = pageList;
+
+    //paging 이동 버튼
+    paging.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      //target 찾기
+      const target = e.target;
+      //console.log(target);
+
+      //paging번호 가져오기
+      const pageNum = target.getAttribute("href");
+      //console.log(pageNum);
+
+      //paging값 넘겨주기
+      pageObj.value = pageNum;
+
+      //actionForm submit
+      actionForm.setAttribute("action", "/board/list");
+      actionForm.submit();
+
+    }, false);
+
+
+
+    
+    
+
   </script>
   
 </body>

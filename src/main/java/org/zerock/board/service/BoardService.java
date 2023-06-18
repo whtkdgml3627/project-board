@@ -17,4 +17,7 @@ public interface BoardService {
   //게시판 목록
   PageResponseDTO<BoardDTO> boardList(PageRequestDTO pageRequestDTO);
 
+  //게시판 등록
+  int boardAdd(BoardDTO boardDTO);
+
 }
