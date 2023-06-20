@@ -71,7 +71,7 @@ set
 	title = '',
 	content = '',
 	writer = '',
-	deuDate = null,
+	dueDate = null,
 	updateDate = now(),
 	remove = false
 where bno = 720885
