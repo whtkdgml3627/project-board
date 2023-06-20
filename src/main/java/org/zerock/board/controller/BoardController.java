@@ -57,7 +57,7 @@ public class BoardController {
   //게시판 상세
   @GetMapping("detail/{bno}")
   public String boardDetail(
-    @PathVariable("bno") long bno, PageRequestDTO pageRequestDTO, Model model
+    @PathVariable("bno") int bno, PageRequestDTO pageRequestDTO, Model model
   ) {
     log.info("get | detail.........................");
     //bno찾기
@@ -75,10 +75,33 @@ public class BoardController {
   //게시판 삭제(update)
   @PostMapping("remove/{bno}")
   public String boardRemove(
-    @PathVariable("bno") long bno
+    @PathVariable("bno") int bno
   ) {
     boardService.boardRemove(bno);
     return "redirect:/board/list";
   }
-  
+
+  //게시판 수정
+  @GetMapping("modify/{bno}")
+  public String boardModifyGet(
+    @PathVariable("bno") int bno, PageRequestDTO pageRequestDTO, BoardDTO boardDTO, Model model
+  ) {
+    log.info("get | modify.........................");
+
+    //input value에 넣어줘야 하므로 detail 불러옴
+    BoardDTO dto = boardService.boardDetail(bno);
+    model.addAttribute("board", dto);
+
+    return "/board/modify";
+  }
+
+  @PostMapping("modify/{bno}")
+  public String boardModifyPost(
+    @PathVariable("bno") int bno, BoardDTO boardDTO
+  ) {
+    boardService.boardModify(boardDTO, bno);
+    return "redirect:/board/detail/" + bno;
+  }
+
+  // /게시판 수정
 }

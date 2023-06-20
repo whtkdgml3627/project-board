@@ -9,26 +9,27 @@
 </head>
 <body>
   <div class="container-fluid pt-4 px-4" layout:fragment="content">
+    <!--/* [[${board}]] */-->
     <div class="col-sm-12 col-xl-12">
       <div class="bg-light rounded h-100 p-4">
-        <h2 class="mb-4">게시판 등록</h2>
+        <h2 class="mb-4">게시판 수정</h2>
         <form name="frm" method="post" class="formData">
           <div class="mb-3">
             <label for="boardTitle" class="form-label">제목</label>
-            <input type="text" name="title" class="form-control" id="boardTitle">
+            <input type="text" name="title" class="form-control" id="boardTitle" th:value="${board.title}">
           </div>
           <div class="mb-3">
             <label for="boardContent" class="form-label">내용</label>
-            <input type="text" name="content" class="form-control" id="boardContent">
+            <input type="text" name="content" class="form-control" id="boardContent" th:value="${board.content}">
           </div>
           <div class="mb-3">
             <label for="boardWriter" class="form-label">작성자</label>
-            <input type="text" name="writer" class="form-control" id="boardWriter">
+            <input type="text" name="writer" class="form-control" id="boardWriter" th:value="${board.writer}">
           </div>
         </form>
         <div class="button_wrap">
-          <button type="button" class="btn btn-primary btnAdd">등록</button>
-          <a href="/board/list" class="btn btn-danger">취소</a>
+          <button type="button" class="btn btn-primary btnAdd">수정</button>
+          <a th:href="@{/board/list(page = ${pageRequestDTO.page}, size = ${pageRequestDTO.size})}" class="btn btn-danger btnList">취소</a>
         </div>
       </div>
     </div>
@@ -49,7 +50,7 @@
     const modalView = new bootstrap.Modal(document.querySelector(".modal"))
     const modalPop = document.querySelector(".modal .modal-body")
     const btnAdd = document.querySelector(".btnAdd")
-    //등록버튼 클릭
+    //수정버튼 클릭
     btnAdd.addEventListener("click", e => {
       //console.log(frm.title.value);
       if(frm.title.value == "") {

@@ -6,12 +6,12 @@
 <mapper namespace="org.zerock.board.mappers.BoardMapper">
 
   <!-- 게시판 목록 -->
-  <select id="boardList" resultType="org.zerock.board.dto.BoardDTO">
+  <select id="boardList" resultType="BoardDTO">
     select bno, title, content, writer, dueDate, remove
     from tbl_board
     where bno > 0 and remove = 1
     order by bno desc
-    limit #{pr.skip}, #{pr.size}
+    limit #{skip}, #{size}
   </select>
 
   <!-- 게시판 다음버튼  total -->
@@ -31,7 +31,7 @@
   </insert>
 
   <!-- 게시판 상세 -->
-  <select id="boardDetail" resultType="org.zerock.board.dto.BoardDTO">
+  <select id="boardDetail" resultType="BoardDTO">
     select bno, title, content, writer, updateDate, remove
     from tbl_board
     where bno = #{bno}
@@ -41,12 +41,15 @@
   <update id="boardRemove">
     update tbl_board
     set
-      title = '',
-      content = '',
-      writer = '',
-      dueDate = null,
-      updateDate = now(),
-      remove = false
+      title = '', content = '', writer = '', dueDate = null, updateDate = now(), remove = false
+    where bno = #{bno}
+  </update>
+
+  <!-- 게시판 수정 -->
+  <update id="boardModify">
+    update tbl_board
+    set
+      title = #{br.title}, content = #{br.content}, writer = #{br.writer}, updateDate = now()
     where bno = #{bno}
   </update>
 

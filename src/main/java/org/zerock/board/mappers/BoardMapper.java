@@ -10,9 +10,7 @@ public interface BoardMapper {
   
   //게시판 목록
   //mapper에서 참조하기위해 Param으로 선언
-  List<BoardDTO> boardList(
-    @Param ("pr") PageRequestDTO pageRequestDTO
-  );
+  List<BoardDTO> boardList(PageRequestDTO pageRequestDTO);
 
   //total 가져오기
   long listCount(PageRequestDTO pageRequestDTO);
@@ -22,9 +20,15 @@ public interface BoardMapper {
   int boardAdd(BoardDTO boardDTO);
 
   //게시판 상세
-  BoardDTO boardDetail(long bno);
+  BoardDTO boardDetail(int bno);
 
   //게시판 삭제
-  int boardRemove(long bno);
+  int boardRemove(int bno);
+
+  //게시판 수정
+  int boardModify(
+    @Param("br") BoardDTO boardDTO,
+    @Param("bno") int bno
+  );
 
 }

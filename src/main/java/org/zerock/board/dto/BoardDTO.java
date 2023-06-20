@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 public class BoardDTO {
 
   //변수
-  private int bno;            //게시물번호 pk
+  private int bno;        //게시물번호 pk
   private String title;       //제목
   private String content;     //내용
   private String writer;      //작성자
   private String dueDate;     //등록일자
   private String updateDate;  //수정일자
-  private int remove;     //삭제여부
+  private boolean remove;     //삭제여부
   
 }

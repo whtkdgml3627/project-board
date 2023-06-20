@@ -21,9 +21,12 @@ public interface BoardService {
   int boardAdd(BoardDTO boardDTO);
 
   //게시판 상세
-  BoardDTO boardDetail(long bno);
+  BoardDTO boardDetail(int bno);
 
   //게시판 삭제
-  int boardRemove(long bno);
+  int boardRemove(int bno);
+
+  //게시판 수정
+  int boardModify(BoardDTO boardDTO, int bno);
 
 }

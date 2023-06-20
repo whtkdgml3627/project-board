@@ -54,7 +54,7 @@ public class BoardTest {
 
     log.info("====================================");
     log.info("====================================");
-    log.info(boardMapper.boardDetail(720811L));
+    log.info(boardMapper.boardDetail(720811));
   }
 
   //게시판 삭제 테스트
@@ -62,7 +62,20 @@ public class BoardTest {
   public void boardRemoveTest() {
     log.info("====================================");
     log.info("====================================");
-    log.info(boardMapper.boardRemove(720884L));
+    log.info(boardMapper.boardRemove(720878));
+  }
+  //게시판 수정 테스트
+  @Test
+  public void boardModifyTest() {
+    BoardDTO boardDTO = BoardDTO.builder()
+    .title("수정")
+    .content("테스트")
+    .writer("나")
+    .build();
+
+    log.info("====================================");
+    log.info("====================================");
+    log.info(boardMapper.boardModify(boardDTO, 720887));
   }
   
 }

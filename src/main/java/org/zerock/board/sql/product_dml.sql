@@ -83,4 +83,6 @@ from tbl_product p
 
 create index idx_product_image1 on tbl_product_image (pno desc, ord asc);
 
+select * from tbl_product_image where pno = 2036;
+
 

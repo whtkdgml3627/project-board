@@ -48,7 +48,7 @@ public class BoardServiceTest {
   public void boardDetailServiceTest() {
     log.info("====================================");
     log.info("====================================");
-    log.info(boardService.boardDetail(720881L));
+    log.info(boardService.boardDetail(720881));
   }
 
   //게시판 삭제 테스트
@@ -56,7 +56,22 @@ public class BoardServiceTest {
   public void boardRemoveServiceTest() {
     log.info("====================================");
     log.info("====================================");
-    log.info(boardService.boardRemove(720883L));
+    log.info(boardService.boardRemove(720883));
+  }
+
+  //게시판 수정 테스트
+  @Test
+  public void boardModifyServiceTest() {
+    BoardDTO boardDTO = BoardDTO.builder()
+    .title("수정 서비스")
+    .content("서비스 수정")
+    .writer("작성자 서비스")
+    .build();
+
+    log.info("====================================");
+    log.info("====================================");
+    log.info(boardService.boardModify(boardDTO, 720887));
+
   }
   
 }

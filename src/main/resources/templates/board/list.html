@@ -50,56 +50,56 @@
 
   <script layout:fragment="script" th:inline="javascript">
     //클래스로 선택
-    const actionForm = document.querySelector(".actionForm");
-    const paging = document.querySelector(".paging");
-    const pageObj = document.querySelector("input[name=page]");
-    const boardDetail = document.querySelector(".boardDetail");
+    const actionForm = document.querySelector(".actionForm")
+    const paging = document.querySelector(".paging")
+    const pageObj = document.querySelector("input[name=page]")
+    const boardDetail = document.querySelector(".boardDetail")
     //page,size 값 변수에 저장
-    const {page, size} = [[${pageRequestDTO}]];
+    const {page, size} = [[${pageRequestDTO}]]
     //total(101) 값 저장
-    const {total} = [[${boardList}]];
+    const {total} = [[${boardList}]]
     
     //paging동적으로 생성
-    const pageList = makePages(page, size, total);
-    paging.innerHTML = pageList;
+    const pageList = makePages(page, size, total)
+    paging.innerHTML = pageList
 
     //paging 이동 버튼
     paging.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
+      e.preventDefault()
+      e.stopPropagation()
 
       //target 찾기
-      const target = e.target;
+      const target = e.target
       //console.log(target);
 
       //paging번호 가져오기
-      const pageNum = target.getAttribute("href");
+      const pageNum = target.getAttribute("href")
       //console.log(pageNum);
 
       //paging값 넘겨주기
-      pageObj.value = pageNum;
+      pageObj.value = pageNum
 
       //actionForm submit
-      actionForm.setAttribute("action", "/board/list");
-      actionForm.submit();
+      actionForm.setAttribute("action", "/board/list")
+      actionForm.submit()
 
     }, false);
 
     //게시판 상세 이동
     boardDetail.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
+      e.preventDefault()
+      e.stopPropagation()
 
       //target 찾기
       const target = e.target;
 
       //bno 가져오기
-      const bno = target.closest("tr").getAttribute("data-bno");
-      console.log(bno);
+      const bno = target.closest("tr").getAttribute("data-bno")
+      //console.log(bno)
 
       //쿼리스트링 그대로 detail페이지로
-      actionForm.setAttribute("action", `/board/detail/${bno}`);
-      actionForm.submit();
+      actionForm.setAttribute("action", `/board/detail/${bno}`)
+      actionForm.submit()
     }, false);
   </script>
   

@@ -42,16 +42,24 @@ public class BoardServiceImpl implements BoardService {
     return boardMapper.boardAdd(boardDTO);
   }
 
+  //게시판 상세
   @Override
-  public BoardDTO boardDetail(long bno) {
+  public BoardDTO boardDetail(int bno) {
     //리턴에 바로 값 넘겨주기
     return boardMapper.boardDetail(bno);
   }
 
+  //게시판 삭제
   @Override
-  public int boardRemove(long bno) {
+  public int boardRemove(int bno) {
     //리턴에 바로 값 넘겨주기
     return boardMapper.boardRemove(bno);
+  }
+
+  @Override
+  public int boardModify(BoardDTO boardDTO, int bno) {
+    //리턴에 바로 값 넘겨주기
+    return boardMapper.boardModify(boardDTO, bno);
   }
   
 }
