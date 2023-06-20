@@ -9,7 +9,11 @@ create table tbl_board (
 ;
 
 ##삭제컬럼추가
-alter table tbl_board add `remove` boolean default true after `updateDate`
+alter table tbl_board add `status` boolean default true after `updateDate`
+;
+
+##댓글 갯수컬럼 추가
+alter table tbl_board add column (replycnt int default 0)
 ;
 
 ##조회
@@ -68,13 +72,15 @@ where bno = 720811
 ##게시판 삭제
 update tbl_board
 set
-	title = '',
-	content = '',
-	writer = '',
-	dueDate = null,
-	updateDate = now(),
-	remove = false
+	title = '', content = '', writer = '', dueDate = null, updateDate = now(), remove = false
 where bno = 720885
+;
+
+##게시판 수정
+update tbl_board
+set
+	title = '게시판 수정', content = '게시판 내용 수정', writer = '작성자 수정', updateDate = now()
+where bno = 720887
 ;
 
 

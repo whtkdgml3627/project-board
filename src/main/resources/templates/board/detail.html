@@ -46,7 +46,7 @@
   </div>
   <script layout:fragment="script" th:inline="javascript">
     //변수, 선택자
-    const {bno, remove} = [[${boardDetail}]]
+    const {bno, status} = [[${boardDetail}]]
     const modalView = new bootstrap.Modal(document.querySelector(".modal"))
     const actionForm = document.querySelector(".actionForm")
     const bntRemove = document.querySelector(".btnRemove")
@@ -54,7 +54,7 @@
     //console.log(window.location.host + "/board/list");
 
     //삭제된 게시물은 list로 return처리
-    if(!remove){
+    if(!status){
       alert("삭제된 게시물 입니다.");
       window.location.href = "http://" + window.location.host + "/board/list"
     }
